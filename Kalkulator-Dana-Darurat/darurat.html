@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Dana Darurat</title>
+    <link rel="stylesheet" href="darurat.css">
+</head>
+<body>
+    <div class="hero-calculator">
+        <h1>Kalkulator Dana Darurat 🆘</h1>
+        <p>Rencanakan keuangan daruratmu dengan mudah dan cepat</p>
+    </div>
+
+    <a href="../Landing-Page/Landing.html" class="logo-button">
+        <img src="../logo2.png" alt="Logo" />
+    </a>
+
+
+    <div class="container">
+        <div class="calculator-section">
+            <!-- <h1>Kalkulator Dana Darurat</h1> -->
+            
+            <!-- Step 1: Data Pribadi -->
+            <div class="step-section" id="step1">
+                <h2>Yuk, ceritain kebutuhanmu 🌟</h2>
+                <div class="form-group">
+                    <label>Pengeluaran wajibmu setiap bulan</label>
+                    <div class="input-group">
+                        <span class="currency">Rp</span>
+                        <input type="text" id="monthlyExpense" class="currency-input" required>
+                    </div>
+                    <small>Hitung pengeluaran pokok bulanan (kos, listrik, transport, dll)</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Apakah kamu sudah menikah?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="maritalStatus" value="married">
+                            <span>Sudah</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="maritalStatus" value="single">
+                            <span>Belum</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Jumlah tanggunganmu</label>
+                    <input type="number" id="dependents" min="0" required>
+                    <small>Berapa orang yang bergantung pada penghasilanmu?</small>
+                </div>
+            </div>
+
+            <!-- Step 2: Strategi Investasi -->
+            <div class="step-section" id="step2">
+                <h2>Atur strategi investasimu 💰</h2>
+                <div class="form-group">
+                    <label>Target waktu mengumpulkan (bulan)</label>
+                    <input type="number" id="targetMonths" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Dana darurat saat ini</label>
+                    <div class="input-group">
+                        <span class="currency">Rp</span>
+                        <input type="text" id="currentFund" class="currency-input" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Target investasi per bulan</label>
+                    <div class="input-group">
+                        <span class="currency">Rp</span>
+                        <input type="text" id="monthlyInvestment" class="currency-input" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Return investasi per tahun</label>
+                    <div class="input-group">
+                        <input type="number" id="returnRate" step="0.01" required>
+                        <span class="percentage">%</span>
+                    </div>
+                    <small>Disarankan aset berisiko rendah (maksimal ~10% per tahun)</small>
+                </div>
+
+                <button type="button" id="calculateBtn" class="primary-button">Hitung Dana Darurat</button>
+            </div>
+
+            <!-- Hasil Perhitungan -->
+            <div class="result-section" id="result">
+                <h2>Hasil Perhitungan</h2>
+                <div class="result-card total-required">
+                    <h3>Dana Darurat yang Dibutuhkan</h3>
+                    <div class="amount" id="totalRequired"></div>
+                </div>
+
+                <div class="result-card duration">
+                    <h3>Progres Pengumpulan Dana</h3>
+                    <div class="duration-chart">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="durationProgress"></div>
+                        </div>
+                        <div class="timeline-markers">
+                            <span id="startPoint">Rp 0</span>
+                            <span id="targetPoint"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-breakdown">
+                        <div class="pie-chart-container">
+                            <div class="pie-chart" id="investmentPieChart"></div>
+                            <div class="pie-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color principal"></span>
+                                    <span class="legend-label">Modal Investasi:</span>
+                                    <span class="legend-value" id="principalAmount"></span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color interest"></span>
+                                    <span class="legend-label">Return Investasi:</span>
+                                    <span class="legend-value" id="interestAmount"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="breakdown-item total">
+                            <div class="breakdown-label">Total Akumulasi</div>
+                            <div class="breakdown-amount" id="totalAmount"></div>
+                        </div>
+                    </div>
+
+                    <div class="duration-details">
+                        <div class="duration-item">
+                            <span class="duration-label">Waktu yang dibutuhkan:</span>
+                            <span class="duration-value" id="savingDuration"></span>
+                        </div>
+                        <div class="duration-item">
+                            <span class="duration-label">Target tercapai pada:</span>
+                            <span class="duration-value" id="targetDate"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card allocation">
+                    <h3>Rekomendasi Alokasi</h3>
+                    <div class="allocation-grid">
+                        <div class="allocation-item">
+                            <div class="allocation-label">Tabungan</div>
+                            <div class="allocation-percentage">50%</div>
+                            <div class="allocation-amount" id="savingAmount"></div>
+                        </div>
+                        <div class="allocation-item">
+                            <div class="allocation-label">Instrumen Investasi</div>
+                            <div class="allocation-percentage">50%</div>
+                            <div class="allocation-amount" id="investmentAmount"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card recommendations">
+                    <h3 id="recommendationTitle">Rekomendasi untukmu</h3>
+                    <div class="recommendations-list" id="recommendationsList">
+                        <!-- Rekomendasi akan diisi oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="darurat.js"></script>
+</body>
+</html>
