@@ -63,9 +63,9 @@ function getSaranInvestasi(totalDana) {
             <h3>Saran Pengelolaan Dana</h3>
             <ul>
                 <li>Emergency Fund (20%): ${formatRupiah(totalDana * 0.2)}</li>
-                <li>Reksadana Saham (30%): ${formatRupiah(totalDana * 0.3)}</li>
+                <li>Saham (30%): ${formatRupiah(totalDana * 0.3)}</li>
                 <li>Obligasi Pemerintah (20%): ${formatRupiah(totalDana * 0.2)}</li>
-                <li>Properti/REIT (20%): ${formatRupiah(totalDana * 0.2)}</li>
+                <li>Reksadana (20%): ${formatRupiah(totalDana * 0.2)}</li>
                 <li>Emas (10%): ${formatRupiah(totalDana * 0.1)}</li>
             </ul>
             <p><strong>Tips:</strong> Bisa mulai berinvestasi di instrumen yang lebih agresif dengan potensi return lebih tinggi.</p>
@@ -76,7 +76,7 @@ function getSaranInvestasi(totalDana) {
             <ul>
                 <li>Emergency Fund (15%): ${formatRupiah(totalDana * 0.15)}</li>
                 <li>Saham Blue Chip (30%): ${formatRupiah(totalDana * 0.3)}</li>
-                <li>Properti (25%): ${formatRupiah(totalDana * 0.25)}</li>
+                <li>Reksadana (25%): ${formatRupiah(totalDana * 0.25)}</li>
                 <li>Obligasi Pemerintah (15%): ${formatRupiah(totalDana * 0.15)}</li>
                 <li>Emas dan Logam Mulia (10%): ${formatRupiah(totalDana * 0.1)}</li>
                 <li>Cryptocurrency (5%): ${formatRupiah(totalDana * 0.05)}</li>
@@ -259,7 +259,7 @@ function hitungInvestasi() {
                     <span class="amount">${formatRupiah(totalInvestasi * 0.30)}</span>
                 </li>
                 <li class="saran-item">
-                    <span class="label">Properti (25%)</span>
+                    <span class="label">Reksadana (25%)</span>
                     <span class="amount">${formatRupiah(totalInvestasi * 0.25)}</span>
                 </li>
                 <li class="saran-item">
@@ -290,11 +290,11 @@ function hitungInvestasi() {
     window.myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Dana Awal', 'Kontribusi Berkala', 'Return Investasi'],
+            labels: ['Dana Awal', 'Total Kontribusi', 'Return Investasi'],
             datasets: [{
                 data: [
                     danaAwal,
-                    totalKontribusi - danaAwal,
+                    totalKontribusi,
                     totalReturn
                 ],
                 backgroundColor: [
